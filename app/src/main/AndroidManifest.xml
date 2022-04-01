@@ -10,6 +10,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M08uf2x01">
         <activity
+            android:name=".ex3.temperature.device.SensorTemperatureActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ex3.proximity.SensorProximityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ex3.light.SensorLightActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ex9.Ejercicio9Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ex8.Ejercicio8Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ex7.Ejercicio7Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ex6.Ejercicio6Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ex5.Ejercicio5Activity"
+            android:exported="false" />
+        <activity
             android:name=".ex4.Ejercicio4Activity"
             android:exported="false" />
         <activity
@@ -21,10 +45,11 @@
         <activity
             android:name=".ex1.Ejercicio1Activity"
             android:exported="false" />
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
