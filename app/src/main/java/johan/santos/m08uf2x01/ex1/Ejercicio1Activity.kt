@@ -4,47 +4,69 @@ import android.hardware.Sensor
 import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import johan.santos.m08uf2x01.R
+import johan.santos.m08uf2x01.databinding.ActivityEjercicio1Binding
+import johan.santos.m08uf2x01.ex1.recycleViewSensor.SensorClass
+import johan.santos.m08uf2x01.ex1.recycleViewSensor.adapter.SensorClassAdapter
 
 class Ejercicio1Activity : AppCompatActivity() {
-    // variable de sensor
+    // Variable de sensor
     private var mSensorManager: SensorManager? = null
+    private val llistaSensors : MutableList<SensorClass> = mutableListOf()
+    private lateinit var binding : ActivityEjercicio1Binding
+    companion object{
+        const val PATH_PHOTO = "https://somoviles.files.wordpress.com/2014/08/androidf6o.jpg"
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejercicio1)
 
+        binding = ActivityEjercicio1Binding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         // Get the sensor service and retrieve the list of sensors.
         mSensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        val sensorList = mSensorManager!!.getSensorList(Sensor.TYPE_ALL)
+        val sensorList: MutableList<Sensor> = mSensorManager!!.getSensorList(Sensor.TYPE_ALL)
 
-        // Iterate through the list of sensors, get the sensor name,
-        // append it to the string.
-        val sensorText = StringBuilder()
-        //String sensorText = "";
-        for (currentSensor in sensorList) {
-            sensorText.append(currentSensor.name).append(
-                System.getProperty("line.separator")
-            )
-            sensorText.append("type: " + currentSensor.stringType ).append(
-                System.getProperty("line.separator")
-            )
-            sensorText.append("power: " + currentSensor.power).append(
-                System.getProperty("line.separator")
-            )
-            sensorText.append("resolution: " + currentSensor.resolution).append(
-                System.getProperty("line.separator")
-            )
-            sensorText.append("------------------------------").append(
-                System.getProperty("line.separator")
-            )
-        }
-
-        // Update the sensor list text view to display the list of sensors.
-        val sensorTextView = findViewById<View>(R.id.sensor_list) as TextView
-        sensorTextView.text = sensorText
+        // generar lista de "SensorClass"
+        reloadListSensor(sensorList)
+        // inicializar el recycler view
+        initRecycleView()
 
     }
+
+    private fun reloadListSensor(sensorList: MutableList<Sensor>){
+        for (currentSensor in sensorList) {
+            val typeSensor = currentSensor.stringType.split(".").get(currentSensor.stringType.split(".").size-1)
+            val sensorItem = SensorClass(currentSensor.name, typeSensor, "" + currentSensor.power, PATH_PHOTO)
+            llistaSensors.add(sensorItem)
+        }
+    }
+
+    private fun initRecycleView() {
+        //val manager = GridLayoutManager(this, 2)
+        val manager = LinearLayoutManager(this)
+        //val decoration = DividerItemDecoration(this, manager.orientation)
+        binding.recyclerSensors.layoutManager = manager
+        binding.recyclerSensors.adapter = SensorClassAdapter(llistaSensors) { sensorSelected ->
+            onItemSelected(
+                sensorSelected
+            )
+        }
+        //binding.recyclerSensors.addItemDecoration(decoration)
+    }
+
+    fun onItemSelected (sensorSelected : SensorClass){
+        Toast.makeText(this, "Has seleccionado el item: " + sensorSelected.name, Toast.LENGTH_SHORT).show()
+    }
+
+
+
 }
