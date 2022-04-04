@@ -7,5 +7,11 @@
     <string name="sensor_proximity">Sensor_Proximity</string>
     <string name="sensor_temperatura">Sensor_Temperatura</string>
     <string name="sensor_ambient_temperatura">Sensor_Ambient_Temperatura</string>
+    <string name="iniciar_audio">Iniciar audio</string>
+    <string name="pausar">Pausar</string>
+    <string name="continuar">Continuar</string>
+    <string name="detener">Detener</string>
+    <string name="no_reproducir_en_forma_circular">No reproducir en forma circular</string>
+    <string name="escribir_texto">Escribir texto</string>
 
 </resources>
