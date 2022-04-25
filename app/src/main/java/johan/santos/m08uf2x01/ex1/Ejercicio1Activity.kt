@@ -19,6 +19,7 @@ class Ejercicio1Activity : AppCompatActivity() {
     private var mSensorManager: SensorManager? = null
     private val llistaSensors : MutableList<SensorClass> = mutableListOf()
     private lateinit var binding : ActivityEjercicio1Binding
+
     companion object{
         const val PATH_PHOTO = "https://somoviles.files.wordpress.com/2014/08/androidf6o.jpg"
     }
@@ -44,7 +45,9 @@ class Ejercicio1Activity : AppCompatActivity() {
 
     private fun reloadListSensor(sensorList: MutableList<Sensor>){
         for (currentSensor in sensorList) {
+            // obtener un valor del array del "Split" generado
             val typeSensor = currentSensor.stringType.split(".").get(currentSensor.stringType.split(".").size-1)
+            // generar el sen
             val sensorItem = SensorClass(currentSensor.name, typeSensor, "" + currentSensor.power, PATH_PHOTO)
             llistaSensors.add(sensorItem)
         }

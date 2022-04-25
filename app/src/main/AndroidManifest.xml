@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="johan.santos.m08uf2x01">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
 
     <application
         android:allowBackup="true"
@@ -10,39 +20,73 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.M08uf2x01">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDVtunKD3F4IeWQYYzeQBcdXPCYt1Vq_00" />
+
+        <activity
+            android:name=".ex8.mailAndFile.MailAndFileActivity"
+            android:exported="false" >
+            <intent-filter>
+<!--                <action android:name="android.intent.action.MAIN" />-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ex8.mail.MailActivity"
+            android:exported="false" >
+            <intent-filter>
+<!--                <action android:name="android.intent.action.MAIN" />-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ex3.temperature.device.SensorTemperatureActivity"
             android:exported="false" />
+
         <activity
             android:name=".ex3.proximity.SensorProximityActivity"
             android:exported="false" />
+
         <activity
             android:name=".ex3.light.SensorLightActivity"
             android:exported="false" />
+
         <activity
             android:name=".ex9.Ejercicio9Activity"
             android:exported="false" />
+
         <activity
             android:name=".ex8.Ejercicio8Activity"
             android:exported="false" />
+
         <activity
             android:name=".ex7.Ejercicio7Activity"
             android:exported="false" />
+
         <activity
             android:name=".ex6.Ejercicio6Activity"
             android:exported="false" />
+
         <activity
             android:name=".ex5.Ejercicio5Activity"
             android:exported="false" />
+
         <activity
             android:name=".ex4.Ejercicio4Activity"
             android:exported="false" />
+
         <activity
             android:name=".ex3.Ejercicio3Activity"
             android:exported="false" />
+
         <activity
             android:name=".ex2.Ejercicio2Activity"
             android:exported="false" />
+
         <activity
             android:name=".ex1.Ejercicio1Activity"
             android:exported="false" />
